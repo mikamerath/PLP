@@ -79,14 +79,14 @@ class PLP:
 
     def train(self, pairs):
         discrepancies = set()
-        for pair in pairs:   
+        for pair in pairs:
             _, _, aligned_uf, aligned_sf = self.add_incremental(pair)
             if aligned_uf != aligned_sf:
                 for i in range(len(aligned_uf)):
                     if aligned_uf[i] != aligned_sf[i]: # discrepancy
                         discrepancies.add((aligned_uf[i], aligned_sf[i]))
 
-        for seg, b in discrepancies: # account for each discrepancy
+        for seg, b in sorted(discrepancies): # account for each discrepancy
             r = self.rule_builders[seg].build(b=b)
             self.discrepancies[(seg, b)] = r
 
@@ -177,7 +177,7 @@ class PLP:
         while change: # while there is a change to some rule
             change = False
             num_rules = len(self.grammar)
-            pool = list(self.grammar.rules)
+            pool = sorted(self.grammar.rules)
             for i in range(num_rules):
                 for j in range(i + 1, num_rules):
                     r1 = pool[i]

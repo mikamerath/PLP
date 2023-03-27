@@ -194,6 +194,9 @@ class Rule:
 
         :return: True if the rules are mergeable, False otherwise.
         '''
+        n, _ = self.get_n_c(pairs)
+        no, _ = other.get_n_c(pairs)
+        n_both = n + no
         # the rules must do the same thing to the target
         if self.B.seq != other.B.seq:
             return False
@@ -209,7 +212,7 @@ class Rule:
             if not nr.D.wildcard() and not other.D.wildcard():
                 nr.D.seq.merge(other.D.seq)
             n, c = nr.get_n_c(pairs)
-            if tolerance_principle(n, c):
+            if n >= n_both and tolerance_principle(n, c):
                 if not self.C.wildcard() and not other.C.wildcard():
                     self.C.seq.merge(other.C.seq)
                 self.A.seq.merge(other.A.seq)
@@ -240,6 +243,9 @@ class Rule:
 
     def __repr__(self):
         return self.__str__()
+    
+    def __lt__(self, other):
+        return self.__str__() < other.__str__()
 
     def equals_CAD(self, window):
         len_C = len(self.C)

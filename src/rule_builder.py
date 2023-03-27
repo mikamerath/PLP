@@ -155,12 +155,14 @@ class RuleBuilder():
 
         :return: the built rule
         '''
+
+        # grab the instances relevant to this particular self.target --> b
         pos = list(filter(lambda it: it.b == b, self.instances))
 
         zero_rule = self.build_rule_from_window(None, b)
         n, c = zero_rule.get_n_c(self.pairs)
 
-        if self.threshold(n=n, c=c):
+        if self.threshold(n=n, c=c): # see if context-free rule is good enough
             return zero_rule
         else:
             max_lc = max(len(it.lc) for it in self.instances)
