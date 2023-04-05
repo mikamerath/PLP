@@ -101,20 +101,6 @@ def most_freq(l):
             max_val = count
     return argmax
 
-def longest_common_prefix(strings):
-    lcp = ''
-    i = 0
-
-    min_len = min(len(s) for s in strings)
-    while i < min_len:
-        target_char = strings[0][i]
-        if all(s[i] == target_char for s in strings):
-            lcp += target_char
-            i += 1
-        else:
-            break
-    return lcp
-
 def windows(s, i, k, split=False):
     '''
     :return: all windows of length k around pos i in s (including i in the length).

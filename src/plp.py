@@ -12,7 +12,7 @@ from discrepancies import Discrepancies
 from plp_grammar import PLPgrammar
 
 class PLP:
-    def __init__(self, 
+    def __init__(self,
                  threshold=tolerance_principle, 
                  ipa_file='../data/ipa.txt',
                  nas_vowels=False, 
@@ -230,3 +230,6 @@ class PLP:
 
     def __str__(self):
         return self.grammar.__str__()
+
+    def __repr__(self):
+        return self.__str__()
