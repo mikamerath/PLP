@@ -4,7 +4,7 @@
 
 ```bibtex
 @article{belth2022locality,
-  title={Towards a Learning-Based Account of Local Phonological Processes},
+  title={A Learning-Based Account of Local Phonological Processes},
   author={Belth, Caleb},
   journal={Phonology},
   note={In Press},
