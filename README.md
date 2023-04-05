@@ -44,3 +44,22 @@ Here is an example of running PLP on the first 1K words from the German corpus. 
 >> print(plp)
 1: {+voi,-son} --> [-voi] /  __ .
 ```
+
+### Using Generalizations
+
+Once PLP is trained, as exemplified above, it can be used to map a UR to an SR. To apply all the rules in the grammar at once, you can simply call the model object on an input:
+
+```python
+>> plp('hʊnd.')
+'hʊnt.'
+```
+
+If you want to apply rules individually, you can access them as follows:
+
+```python
+>> plp.grammar.rules
+[{+voi,-son} --> [-voi] /  __ .]
+>> r = plp.grammar.rules[0]
+>> r('hʊnd.')
+'hʊnt.'
+```

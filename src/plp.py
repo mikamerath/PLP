@@ -58,6 +58,9 @@ class PLP:
             uf = Sequence(uf, alphabet=self.alphabet)
         return self.grammar.apply(uf)
 
+    def __call__(self, uf):
+        return self.produce(uf)
+
     def induce_natural_classes(self):
         '''
         Induce natural classes over the rules.

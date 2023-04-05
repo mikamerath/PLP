@@ -309,6 +309,9 @@ class Rule:
 
         return out_seq
 
+    def __call__(self, s):
+        return self.apply(s)
+
     def applies(self, uf, sf):
         '''
         Comptes the number of times :self: applies to :uf: and how many of those are correct predictions w.r.t. :sf:
